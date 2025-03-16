@@ -1,18 +1,15 @@
 from djoser.serializers import UserCreateSerializer
-
-from ewallet.models import Wallet, User
+from ewallet.models import Wallet
 from rest_framework import serializers
+from django.contrib.auth import get_user_model
 
 
 class WalletSerializer(serializers.ModelSerializer):
     class Meta:
         model = Wallet
-        fields = ['id', 'phone_number']
+        fields = ['account_number']
 
 
-class CustomUserCreateSerializer(UserCreateSerializer):
-    wallet = WalletSerializer()
-
+class CreateUserSerializer(UserCreateSerializer):
     class Meta(UserCreateSerializer.Meta):
-        model = User
-        fields = ['id', 'username', 'email', 'password', 'wallet']
+        fields = ['first_name', 'last_name', 'username', 'email', 'phone', 'password']
