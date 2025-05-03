@@ -24,6 +24,7 @@ class User(AbstractUser):
     phone = models.CharField(max_length=15, unique=True)
     email = models.EmailField(unique=True)
     USERNAME_FIELD = 'phone'
+    REQUIRED_FIELDS = ['email', 'username']
 
     def __str__(self):
         return self.username

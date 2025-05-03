@@ -16,10 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from ewallet.views import CustomTokenBlacklistView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('ewallet.urls')),
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.jwt')),
+    path('auth/jwt/logout/', CustomTokenBlacklistView.as_view(), name='token_blacklist'),
 ]
